@@ -26,7 +26,7 @@ def main():
 
     powerups = []
     powerup_spawn_timer = 0
-    powerup_spawn_delay = 10 * 60  # Každých 10 sekund
+    powerup_spawn_delay = 10 * FPS  # Každých 10 sekund
     
     # Menu položky
     menu_items = [
@@ -183,7 +183,7 @@ def main():
                 if player.alive:
                     player.draw(screen)
             
-            # Ovládání joystickem
+            # Ovládání 
             for i, player in enumerate(players):
                 if player.alive:
                     if player.controls == "keyboard1":
@@ -227,6 +227,7 @@ def main():
                         x_axis = joystick.get_axis(0)
                         y_axis = joystick.get_axis(1)
                         
+                        #pohyb, citlivost
                         if abs(x_axis) > 0.1:
                             player.move(x_axis * player.speed, 0)
                         if abs(y_axis) > 0.1:
@@ -244,8 +245,8 @@ def main():
                         else:
                             player.aim_visible = False
                         
-                        # Střelba pomocí RT (tlačítko 7 na Xbox ovladači)
-                        if joystick.get_axis(5) > 0.5:  # RT je obvykle osa 5 (může se lišit podle ovladače)
+                        # Střelba pomocí RT
+                        if joystick.get_axis(5) > 0.5:  # RT je 5
                             player.shoot(bullets, player.aim_direction)
                         
             
